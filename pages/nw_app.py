@@ -3,6 +3,11 @@ import tensorflow as tf
 import numpy as np
 from PIL import Image
 import tensorflow_datasets as tfds
+import os
+
+os.environ["GOOGLE_CLOUD_PROJECT"] = ""
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = ""
+
 
 # โหลดโมเดลที่ฝึกเสร็จแล้ว
 def load_model():
