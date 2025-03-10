@@ -3,6 +3,7 @@ streamlit-option-menu==0.4.0
 tensorflow==2.18.0
 tensorflow-datasets==4.9.7
 rembg==2.0.64
+onnxruntime==1.21.0
 pandas==2.2.3
 numpy==2.0.2
 matplotlib==3.10.1
