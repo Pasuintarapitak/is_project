@@ -3,19 +3,14 @@ import tensorflow as tf
 import numpy as np
 from PIL import Image
 import tensorflow_datasets as tfds
-import os
-os.environ["CUDA_VISIBLE_DEVICES"] = "-1"  # ใช้ CPU แทน GPU
-
 
 # โหลดโมเดลที่ฝึกเสร็จแล้ว
-@st.cache_resource()
 def load_model():
     return tf.keras.models.load_model('models/MobileNetV2_model.keras')
 
 model = load_model()
 
 # โหลดข้อมูลชุด `stanford_dogs` เพื่อดึงชื่อพันธุ์สุนัข
-@st.cache()
 def get_label_map():
     _, info = tfds.load("stanford_dogs", with_info=True)
     return info.features['label'].int2str  # ฟังก์ชันแปลง index → ชื่อพันธุ์
@@ -51,6 +46,3 @@ if uploaded_file is not None:
     st.subheader("🔍 ผลการทำนาย")
     st.write(f"🐶 พันธุ์สุนัข: **{predicted_label}**")
     st.write(f"✅ ความมั่นใจ: **{confidence:.2%}**")
-
-# import tensorflow as tf
-# print(tf.__version__)
