@@ -1,13 +1,14 @@
-import streamlit as st
 import tensorflow as tf
 import numpy as np
+import streamlit as st
 from PIL import Image
 import tensorflow_datasets as tfds
+from rembg import remove
 import os
 
-os.environ["GOOGLE_CLOUD_PROJECT"] = ""
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = ""
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 
+st.title("🐶 ทำนายพันธุ์สุนัขด้วย AI")
 
 # โหลดโมเดลที่ฝึกเสร็จแล้ว
 def load_model():
@@ -22,6 +23,7 @@ def get_label_map():
 
 label_map = get_label_map()
 
+# ฟังก์ชันปรับแต่งข้อมูล (Preprocessing)
 def preprocess_image(image):
     image = image.convert("RGB")  # แปลงเป็น RGB
     image = image.resize((128, 128))  # ปรับขนาดให้ตรงกับโมเดล
@@ -29,19 +31,23 @@ def preprocess_image(image):
     image = np.expand_dims(image, axis=0)  # เพิ่มมิติให้เป็น (1, 128, 128, 3)
     return image
 
-# UI สำหรับ Streamlit
-st.title("🐶 ทำนายพันธุ์สุนัขด้วย AI")
+# แสดงตัวอย่างภาพ
 
-uploaded_file = st.file_uploader("อัปโหลดภาพสุนัข", type=["jpg", "jpeg", "png"])
 
-if uploaded_file is not None:
+# อัปโหลดภาพ
+uploaded_file = st.file_uploader("อัปโหลดภาพสุนัขของคุณ", type=["jpg", "jpeg", "png"])
+if uploaded_file:
     image = Image.open(uploaded_file)
     st.image(image, caption="📸 ภาพที่อัปโหลด", use_column_width=True)
+
+    # ลบพื้นหลัง
+    image_no_bg = remove(image)
+    # st.image(image_no_bg, caption="📸 ภาพหลังจากลบพื้นหลัง", use_column_width=True)
 
     # เตรียมข้อมูลและทำนาย
     processed_image = preprocess_image(image)
     predictions = model.predict(processed_image)
-    
+
     # ดึงค่าคลาสที่โมเดลพยากรณ์ได้
     predicted_class = np.argmax(predictions)  # ค่าคลาสที่มีค่าความน่าจะเป็นสูงสุด
     confidence = np.max(predictions)  # ค่าความมั่นใจ
