@@ -8,7 +8,7 @@ import os
 
 os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 
-st.title("🐶 Dog Breed Prection")
+st.title("🐶 Dog Breed Prediction App")
 
 # Load model .keras
 def load_model():
@@ -36,7 +36,7 @@ def preprocess_image(image):
 uploaded_file = st.file_uploader("Upload your dog picture", type=["jpg", "jpeg", "png"])
 if uploaded_file:
     image = Image.open(uploaded_file)
-    st.image(image, caption="📸 ภาพที่อัปโหลด", use_column_width=True)
+    st.image(image, caption="📸 ภาพที่อัปโหลด", use_column_width=True,width=500)
 
     # remove bg
     image_no_bg = remove(image)
