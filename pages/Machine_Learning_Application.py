@@ -22,20 +22,20 @@ gender = st.selectbox("Gender ", ["Male", "Female"])
 bmi = st.number_input("BMI", min_value=0.0, step=0.1)
 smoke = st.radio( "Are you smoking ?", ["Yes", "No"])
 genetic = st.radio(
-"Genetic Risk ?",
+"🧬 Genetic Risk ?",
 ["Indicating Low", "Indicating Medium", "Indicating High	"],
 captions=[
-    "have no cancer in your family.",
-    "have cancer in your far family.",
-    "have cancer in your close family.",
+    "No one in the family has cancer.",
+    "I have a distant relative who has cancer.",
+    "Someone in the family has cancer.",
 ],
 )
 # activities = st.number_input("Physical Activities (hour)", min_value=0.0, step=0.1)
-activities = st.slider("Physical Activities (hour)?", 0, 10, 0 )
-alcohol= st.slider("Alcohol   (consumed per week)?", 0, 5, 0 )
+activities = st.slider("🏀 Physical Activities (hour)?", 0, 10, 0 )
+alcohol= st.slider("🍺 Alcohol   (consumed per week)?", 0, 5, 0 )
 
 # alcohol = st.number_input("Alcohol   (consumed per week)", min_value=0.0, step=0.1)
-history = st.radio( "Cancer History ?", ["Yes", "No"])
+history = st.radio( "💊 Cancer History ?", ["Yes", "No"])
 
 #Convert input data to number
 if gender == 'Male': gender = 0
@@ -61,9 +61,9 @@ if st.button("Predict"):
     if(inputData[0][0] != 0 and inputData[0][2] != 0):
         result = predict(model_name, inputData)
         if(result == 0):
-            st.success(f"🔮 การวินิจฉัย : มีความเสี่ยงต่ำ ")
+            st.success(f"🩺 การวินิจฉัย : มีความเสี่ยงต่ำ ")
         else:
-            st.warning(f"🔮 การวินิจฉัย : มีความเสี่ยงสูง ")  
+            st.warning(f"🩺 การวินิจฉัย : มีความเสี่ยงสูง ")  
 
     else:
         st.warning('กรุณากรอกข้อมูลให้ครบ', icon="⚠️")  
