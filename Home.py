@@ -162,7 +162,7 @@ if selected == "Machine Learning Documentation":
     '''
     st.code(code, language="python")
     st.markdown("""
-        *เนื่องจากข้อมูลไม่ซับซ้อนมากจึงทำการ Normalization*
+        *เนื่องจากข้อมูลไม่ซับซ้อนมากจึงไม่ทำการ Normalization*
               
     """)
     
