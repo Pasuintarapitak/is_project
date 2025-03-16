@@ -36,7 +36,8 @@ def preprocess_image(image):
 uploaded_file = st.file_uploader("Upload your dog picture", type=["jpg", "jpeg", "png"])
 if uploaded_file:
     image = Image.open(uploaded_file)
-    st.image(image, caption="📸 ภาพที่อัปโหลด", use_column_width=True,width=300)
+     st.image(image, caption="📸 ภาพที่อัปโหลด", use_container_width=True,width=300)
+    # st.image(image, caption="📸 ภาพที่อัปโหลด", use_column_width=True,width=300)
 
     # remove bg
     image_no_bg = remove(image)
