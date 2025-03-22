@@ -10,5 +10,6 @@ Dataset :
 *dataset ของ Neural Network เนื่องจากดึง dataset จาก tensorflow และมีขนาดใหญ่ จึงไม่สามารถอัพไฟล์ลง folder datasets ได้*
 
 *หมายเหตุ : ถ้าระหว่างอาจารย์ตรวจงานแล้วเว็ปเกิด sleep ขึ้น ให้ email ติดต่อผมได้เลยครับ 6604062610462@email.kmutnb.ac.th*
+*อาจารย์สามารถเกิดเว็ปได้เลยครับ แต่อาจจะต้องรอดึงข้อมูลจาก dataset นานนิดนึงครับ ต้องขอโทษครับ*
 
 Created by **6604062610462 Pasu Intarapitak**
